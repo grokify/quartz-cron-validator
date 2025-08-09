@@ -55,13 +55,23 @@ public class CronValidator {
      * @param cronExpression The cron expression to validate
      * @return true if valid, false if invalid
      */
-    private static boolean validateCronExpression(String cronExpression) {
+    public static boolean isValidExpression(String cronExpression) {
         try {
             return CronExpression.isValidExpression(cronExpression);
         } catch (Exception e) {
             // Any exception during validation means invalid expression
             return false;
         }
+    }
+    
+    /**
+     * Validates a cron expression using Quartz CronExpression.isValidExpression()
+     * 
+     * @param cronExpression The cron expression to validate
+     * @return true if valid, false if invalid
+     */
+    private static boolean validateCronExpression(String cronExpression) {
+        return isValidExpression(cronExpression);
     }
     
     /**
