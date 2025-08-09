@@ -1,0 +1,90 @@
+# Quartz Cron Validator CLI
+
+A command-line tool that validates cron expressions using the Quartz Scheduler's `CronExpression.isValidExpression()` method.
+
+## Features
+
+- Validates cron expressions using the industry-standard Quartz library
+- Returns proper exit codes (0 for valid, 1 for invalid)
+- Supports both command-line arguments and stdin input
+- Perfect for use in shell scripts and CI/CD pipelines
+- Pipe-friendly for Linux/Unix environments
+
+## Building
+
+```bash
+mvn clean package
+```
+
+This will create `cronvalidator.jar` in the `target/` directory.
+
+## Usage
+
+### Command Line Argument
+```bash
+java -jar target/cronvalidator.jar "0 0 12 * * ?"
+echo $?  # Returns 0 for valid, 1 for invalid
+```
+
+### Stdin/Pipe Input
+```bash
+echo "0 0 12 * * ?" | java -jar target/cronvalidator.jar
+echo $?  # Returns 0 for valid, 1 for invalid
+```
+
+### Shell Script Example
+```bash
+#!/bin/bash
+CRON_EXPR="0 0 12 * * ?"
+
+if java -jar cronvalidator.jar "$CRON_EXPR"; then
+    echo "Cron expression is valid"
+else
+    echo "Cron expression is invalid"
+fi
+```
+
+### Pipeline Example
+```bash
+# Validate multiple cron expressions
+cat cron_expressions.txt | while read line; do
+    if echo "$line" | java -jar cronvalidator.jar; then
+        echo "$line - VALID"
+    else
+        echo "$line - INVALID"
+    fi
+done
+```
+
+## Exit Codes
+
+- `0` - Cron expression is valid
+- `1` - Cron expression is invalid or error occurred
+
+## Cron Expression Format
+
+This tool uses Quartz cron expressions, which have 6 or 7 fields:
+
+```
+┌───────────── second (0-59)
+│ ┌───────────── minute (0-59)
+│ │ ┌───────────── hour (0-23)
+│ │ │ ┌───────────── day of month (1-31)
+│ │ │ │ ┌───────────── month (1-12)
+│ │ │ │ │ ┌───────────── day of week (0-7, 0 and 7 are Sunday)
+│ │ │ │ │ │ ┌───────────── year (optional)
+│ │ │ │ │ │ │
+* * * * * * *
+```
+
+### Examples
+
+- `0 0 12 * * ?` - Every day at noon
+- `0 15 10 ? * MON-FRI` - 10:15 AM every weekday
+- `0 0/5 14 * * ?` - Every 5 minutes starting at 2:00 PM and ending at 2:55 PM, every day
+- `0 0 12 1/5 * ?` - 12:00 PM every 5 days every month, starting on the first day of the month
+
+## Dependencies
+
+- Java 11+
+- Quartz Scheduler 2.3.2
