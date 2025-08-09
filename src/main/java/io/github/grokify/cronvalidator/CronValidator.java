@@ -32,6 +32,7 @@ public class CronValidator {
             // Validate the cron expression
             if (cronExpression != null && !cronExpression.trim().isEmpty()) {
                 boolean isValid = validateCronExpression(cronExpression.trim());
+                System.out.println("Quartz 2.x Cron Expression Validity: " + (isValid ? "VALID" : "INVALID"));
                 System.exit(isValid ? 0 : 1);
             } else {
                 // No input provided
