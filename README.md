@@ -9,6 +9,7 @@ A command-line tool that validates cron expressions using the Quartz Scheduler's
 - Supports both command-line arguments and stdin input
 - Perfect for use in shell scripts and CI/CD pipelines
 - Pipe-friendly for Linux/Unix environments
+- Provides `CronValidator.isValidExpression()` static method for programmatic use
 
 ## Building
 
@@ -56,6 +57,22 @@ cat cron_expressions.txt | while read line; do
 done
 ```
 
+## Programmatic Usage
+
+You can also use the `CronValidator.isValidExpression()` method directly in your Java code:
+
+```java
+import io.github.grokify.cronvalidator.CronValidator;
+
+public class Example {
+    public static void main(String[] args) {
+        String cronExpr = "0 0 12 * * ?";
+        boolean isValid = CronValidator.isValidExpression(cronExpr);
+        System.out.println("Expression '" + cronExpr + "' is " + (isValid ? "valid" : "invalid"));
+    }
+}
+```
+
 ## Exit Codes
 
 - `0` - Cron expression is valid
@@ -83,6 +100,16 @@ This tool uses Quartz cron expressions, which have 6 or 7 fields:
 - `0 15 10 ? * MON-FRI` - 10:15 AM every weekday
 - `0 0/5 14 * * ?` - Every 5 minutes starting at 2:00 PM and ending at 2:55 PM, every day
 - `0 0 12 1/5 * ?` - 12:00 PM every 5 days every month, starting on the first day of the month
+
+## API Documentation
+
+Full Javadoc API documentation is available in the `docs/` directory. Open `docs/index.html` in your web browser to view the complete documentation.
+
+To update the documentation after making code changes:
+```bash
+mvn javadoc:javadoc
+rsync -av target/reports/apidocs/ docs/
+```
 
 ## Dependencies
 
