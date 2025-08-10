@@ -42,8 +42,7 @@ jobs:
         mvn org.owasp:dependency-check-maven:9.0.9:check \
           -DfailBuildOnCVSS=7 \
           -DsuppressOnlyInEffectedScope=true \
-          -Dformats=HTML,JSON,JUNIT \
-          -DjunitFailOnCVSS=7
+          -Dformats=HTML,JSON
     
     - name: Upload Dependency Check Report
       uses: actions/upload-artifact@v4
@@ -52,13 +51,19 @@ jobs:
         name: dependency-check-report
         path: target/dependency-check-report.*
     
-    - name: Upload Test Results
-      uses: dorny/test-reporter@v2
+    - name: Check for vulnerabilities in JSON report
       if: always()
-      with:
-        name: OWASP Dependency Check Results
-        path: target/dependency-check-junit.xml
-        reporter: java-junit
+      run: |
+        if [ -f target/dependency-check-report.json ]; then
+          echo "Dependency check completed. Check the uploaded artifacts for detailed results."
+          # Extract vulnerability count from JSON report
+          if command -v jq &> /dev/null; then
+            VULN_COUNT=$(jq '.dependencies | map(select(.vulnerabilities != null)) | length' target/dependency-check-report.json 2>/dev/null || echo "0")
+            echo "Found $VULN_COUNT dependencies with vulnerabilities"
+          fi
+        else
+          echo "No dependency check report found"
+        fi
 
   dependabot-auto-merge:
     name: Auto-merge Dependabot PRs
