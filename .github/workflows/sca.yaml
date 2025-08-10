@@ -41,6 +41,8 @@ jobs:
           ${{ runner.os }}-dependency-check-data-
           ${{ runner.os }}-dependency-check-
     
+    # NVD API Key: Add NVD_API_KEY as a GitHub repository secret to avoid 403/404 errors
+    # and significantly improve update performance. Without this key, updates can take a very long time.
     - name: Run OWASP Dependency Check
       run: |
         mvn org.owasp:dependency-check-maven:9.0.9:check \
@@ -51,7 +53,8 @@ jobs:
           -DcentralAnalyzerEnabled=false \
           -DretireJsAnalyzerEnabled=false \
           -DnodeAnalyzerEnabled=false \
-          -DautoUpdate=true
+          -DautoUpdate=true \
+          -DnvdApiKey=${{ secrets.NVD_API_KEY }}
     
     - name: Upload Dependency Check Report
       uses: actions/upload-artifact@v4
