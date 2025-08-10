@@ -54,6 +54,7 @@ jobs:
           -DretireJsAnalyzerEnabled=false \
           -DnodeAnalyzerEnabled=false \
           -DautoUpdate=true \
+          -DcisaUpdateDisabled=true \
           -DnvdApiKey=${{ secrets.NVD_API_KEY }}
     
     - name: Upload Dependency Check Report
