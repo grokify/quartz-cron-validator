@@ -47,7 +47,7 @@ jobs:
         restore-keys: ${{ runner.os }}-m2
 
     - name: Build and analyze
-      if: ${{ secrets.SONAR_TOKEN != '' }}
+      if: ${{ env.SONAR_TOKEN != '' }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
