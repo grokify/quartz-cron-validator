@@ -4,6 +4,7 @@ import org.quartz.CronExpression;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 
 /**
  * CLI tool to validate cron expressions using Quartz CronExpression.
@@ -24,7 +25,7 @@ public class CronValidator {
                 cronExpression = args[0];
             } else {
                 // Read from stdin for pipe support
-                BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+                BufferedReader reader = new BufferedReader(new InputStreamReader(System.in, StandardCharsets.UTF_8));
                 cronExpression = reader.readLine();
                 reader.close();
             }
