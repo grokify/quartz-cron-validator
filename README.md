@@ -128,7 +128,7 @@ rsync -av target/reports/apidocs/ docs/
  [sast-status-url]: https://github.com/grokify/quartz-cron-validator/actions/workflows/sast.yaml
  [sca-status-svg]: https://github.com/grokify/quartz-cron-validator/actions/workflows/sca.yaml/badge.svg?branch=main
  [sca-status-url]: https://github.com/grokify/quartz-cron-validator/actions/workflows/sca.yaml
- [docs-javadoc-svg]: https://img.shields.io/badge/Javadoc-reference-blue.svg
+ [docs-javadoc-svg]: https://img.shields.io/badge/reference-Javadoc-blue.svg
  [docs-javadoc-url]: https://grokify.github.io/quartz-cron-validator/
  [license-svg]: https://img.shields.io/badge/license-MIT-blue.svg
  [license-url]: https://github.com/grokify/quartz-cron-validator/blob/main/LICENSE
