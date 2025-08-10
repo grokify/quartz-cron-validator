@@ -53,7 +53,7 @@ jobs:
         path: target/dependency-check-report.*
     
     - name: Upload Test Results
-      uses: dorny/test-reporter@v1
+      uses: dorny/test-reporter@v2
       if: always()
       with:
         name: OWASP Dependency Check Results
