@@ -1,5 +1,11 @@
 # Quartz Cron Validator CLI
 
+[![Build Status][build-status-svg]][build-status-url]
+[![SAST Security Analysis][sast-status-svg]][sast-status-url]
+[![SCA Dependency Analysis][sca-status-svg]][sca-status-url]
+[![Docs][docs-javadoc-svg]][docs-javadoc-url]
+[![License][license-svg]][license-url]
+
 A command-line tool that validates cron expressions using the Quartz Scheduler's `CronExpression.isValidExpression()` method.
 
 ## Features
@@ -115,3 +121,14 @@ rsync -av target/reports/apidocs/ docs/
 
 - Java 11+
 - Quartz Scheduler 2.3.2
+
+ [build-status-svg]: https://github.com/grokify/quartz-cron-validator/actions/workflows/ci.yaml/badge.svg?branch=main
+ [build-status-url]: https://github.com/grokify/quartz-cron-validator/actions/workflows/ci.yaml
+ [sast-status-svg]: https://github.com/grokify/quartz-cron-validator/actions/workflows/sast.yaml/badge.svg?branch=main
+ [sast-status-url]: https://github.com/grokify/quartz-cron-validator/actions/workflows/sast.yaml
+ [sca-status-svg]: https://github.com/grokify/quartz-cron-validator/actions/workflows/sca.yaml/badge.svg?branch=main
+ [sca-status-url]: https://github.com/grokify/quartz-cron-validator/actions/workflows/sca.yaml
+ [docs-javadoc-svg]: https://pkg.go.dev/badge/github.com/grokify/quartz-cron-validator
+ [docs-javadoc-url]: https://grokify.github.io/quartz-cron-validator/
+ [license-svg]: https://img.shields.io/badge/Javadoc-reference-blue.svg
+ [license-url]: https://github.com/quartz-cron-validator/goauth/blob/master/LICENSE
