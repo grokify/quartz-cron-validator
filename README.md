@@ -2,7 +2,6 @@
 
 [![Build Status][build-status-svg]][build-status-url]
 [![SAST Security Analysis][sast-status-svg]][sast-status-url]
-[![SCA Dependency Analysis][sca-status-svg]][sca-status-url]
 [![Docs][docs-javadoc-svg]][docs-javadoc-url]
 [![License][license-svg]][license-url]
 
