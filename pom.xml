@@ -35,9 +35,7 @@
 		<quartz.version>
 			2.5.0
 		</quartz.version>
-		<maven.shade.version>
-			3.4.1
-		</maven.shade.version>
+		<maven.shade.version>3.6.0</maven.shade.version>
 	</properties>
 	<dependencies>
 		<dependency>
