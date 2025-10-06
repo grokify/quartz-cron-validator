@@ -58,7 +58,7 @@
 				junit-jupiter-engine
 			</artifactId>
 			<version>
-				5.13.4
+				6.0.0
 			</version>
 			<scope>
 				test
