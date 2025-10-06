@@ -89,7 +89,7 @@
 					maven-compiler-plugin
 				</artifactId>
 				<version>
-					3.14.0
+					3.14.1
 				</version>
 				<configuration>
 					<source>
